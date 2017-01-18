@@ -1,9 +1,13 @@
 class BitmapEditor
 
+  # Constants
+  BLANK_PIXEL = 'O'
+
   # Initialise the class as the program hasn't started yet
   @running = false
   @image = nil
-  BLANK_PIXEL = 'O'
+  @width = 0
+  @height = 0
 
   # Start the program running
   # @public
@@ -57,12 +61,12 @@ class BitmapEditor
     def new_image(args)
       
       # Convert the width and height arguments to integer
-      width = args[0].to_i
-      height = args[1].to_i
+      @width = args[0].to_i
+      @height = args[1].to_i
       
       # Create a new 2-dimensional array
       # and clear the image
-      @image = Array.new(height) { Array.new(width) }
+      @image = Array.new(@height) { Array.new(@width) }
       clear_image
 
     end
@@ -71,8 +75,8 @@ class BitmapEditor
     # @private
     # @return void
     def clear_image
-      for y in 0..(@image.length-1)
-        for x in 0..(@image[y].length-1)
+      for y in 0..(@height-1)
+        for x in 0..(@width-1)
           @image[y][x] = BLANK_PIXEL
         end
       end
@@ -83,15 +87,32 @@ class BitmapEditor
     # @return void
     def set_pixel_colour(args)
       
+      # x and y must be numbers
+      if !Utils.is_numeric(args[0]) || !Utils.is_numeric(args[1])
+        puts "X and Y must both be numbers"
+        return
+      end     
+
       # Get the integer values of X and Y
       # and subtract 1 so that the first pixel is (1, 1)
       x = args[0].to_i - 1
-      y = args[1].to_i - 1
+      y = args[1].to_i - 1 
 
+      # Must be a valid colour
       col = args[2]
+      if !Utils.is_valid_colour(col)
+        puts "Colours must be capital letters"
+        return
+      end
+
+      # x and y must be valid bounds within the image
+      if x >= @width || x < 0 || y >= @height || y < 0
+        puts "This pixel doesn't exist"
+        return
+      end
 
       @image[y][x] = col
-      
+
     end
 
     # Prints the image to the screen

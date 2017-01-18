@@ -3,7 +3,7 @@ class Utils
   # Converts a white-spaced string into an array of arguments
   # with the first element removed
   # @static
-  # @params input - The string to analyse
+  # @param input - The string to analyse
   # @return string[]
   def self.analyse_input(input)
 
@@ -17,6 +17,10 @@ class Utils
     parts.shift
     return parts
 
+  end
+
+  def self.is_valid_colour(col)
+    return /[[:upper:]]/.match(col)
   end
 
 end

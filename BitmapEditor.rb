@@ -34,6 +34,10 @@ class BitmapEditor
           new_image(args)
         when 'S'
           show_image
+        when 'C'
+          clear_image
+        when 'L'
+          set_pixel_colour(args)
         when 'X'
           exit_console
         else
@@ -48,7 +52,7 @@ class BitmapEditor
     
     # Create a new bitmap in the class
     # @private
-    # @params args - The array of string arguments
+    # @param args - The array of string arguments
     # @return void
     def new_image(args)
       
@@ -57,6 +61,7 @@ class BitmapEditor
       height = args[1].to_i
       
       # Create a new 2-dimensional array
+      # and clear the image
       @image = Array.new(height) { Array.new(width) }
       clear_image
 
@@ -71,6 +76,22 @@ class BitmapEditor
           @image[y][x] = BLANK_PIXEL
         end
       end
+    end
+
+    # Sets the colour of one pixel
+    # @param args - The array containing the X, Y and colour
+    # @return void
+    def set_pixel_colour(args)
+      
+      # Get the integer values of X and Y
+      # and subtract 1 so that the first pixel is (1, 1)
+      x = args[0].to_i - 1
+      y = args[1].to_i - 1
+
+      col = args[2]
+
+      @image[y][x] = col
+      
     end
 
     # Prints the image to the screen

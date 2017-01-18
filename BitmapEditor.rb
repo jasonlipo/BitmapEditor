@@ -72,6 +72,11 @@ class BitmapEditor
       @width = args[0].to_i
       @height = args[1].to_i
 
+      if @width < 1 || @height < 1
+        puts "The image must be at minimum 1x1"
+        return
+      end
+
       if @width > MAX_SIZE || @height > MAX_SIZE
         puts "The maximum width and height is " + MAX_SIZE.to_s
         return

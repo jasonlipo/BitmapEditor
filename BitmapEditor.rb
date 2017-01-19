@@ -217,7 +217,7 @@ class BitmapEditor
         end
         output += "\n"
       end
-      return output
+      return output.strip
     end
 
     # Check that an image has been created

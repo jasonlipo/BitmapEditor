@@ -50,6 +50,12 @@ class Utils
     end
   end
 
+  # Checks whether the provided command is called with the right
+  # number of arguments
+  # @static
+  # @param cmd - The command called
+  # @param args - The array of arguments
+  # @return string
   def self.number_args(cmd, args)
 
     expected_args = 0

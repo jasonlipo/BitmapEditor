@@ -149,6 +149,10 @@ class BitmapEditor
 
     end
 
+    # Draws either a horizontal or vertical line across the image
+    # @param type - A string either 'H' or 'V'
+    # @param args - The array containing the X1/X2, Y1/Y2 and colour
+    # @return string
     def draw_line(type, args)
 
       return image_created if image_created != ""

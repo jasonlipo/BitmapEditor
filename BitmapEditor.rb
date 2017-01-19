@@ -4,33 +4,12 @@ class BitmapEditor
   BLANK_PIXEL = 'O'
   MAX_SIZE = 250
 
-  # Initialise the class as the program hasn't started yet
-  @running = false
+  # Initialise the empty image
+  @io = nil
   @image = nil
 
-  # Start the program running
-  # @public
-  # @return void
-  def start
-
-    @running = true
-    puts 'Welcome to Bitmap Editor'
-    puts 'type ? for help'
-
-    # Keep looping until the user ends the program
-    while @running
-
-      print '> '
-
-      # Get the input from the user
-      input = gets.chomp
-      output = call(input)
-      if (output != "")
-        puts output
-      end
-
-    end
-
+  def initialize(io)
+    @io = io
   end
 
   # Make a call to the private functions below based on user input
@@ -38,7 +17,7 @@ class BitmapEditor
   # @public
   # @param input - The unformatted raw input string
   # @return string
-  def execute(input)
+  def process(input)
     first_char = input[0, 1].capitalize
     cmd = Commands.new(first_char, self)
     cmd.run(input)
@@ -195,7 +174,7 @@ class BitmapEditor
     # @private
     # @return string
     def exit_console
-      @running = false
+      @io.stop
       return "Thanks for running the program!"
     end
 

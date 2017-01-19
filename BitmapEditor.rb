@@ -38,7 +38,7 @@ class BitmapEditor
   # @public
   # @param input - The unformatted raw input string
   # @return string
-  def call(input)
+  def execute(input)
     first_char = input[0, 1].capitalize
     cmd = Commands.new(first_char, self)
     cmd.run(input)
@@ -119,6 +119,10 @@ class BitmapEditor
 
     def draw_vertical(args)
       return draw_line("V", args)
+    end
+
+    def no_command
+      return "Please type a valid command, type ? for help"
     end
 
     # Draws either a horizontal or vertical line across the image

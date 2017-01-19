@@ -35,7 +35,7 @@ class BitmapEditor
       if !Utils.is_numeric([args[0], args[1]])
         return "X and Y must both be numbers"
       end
-      
+
       width = args[0].to_i
       height = args[1].to_i
 
@@ -80,7 +80,7 @@ class BitmapEditor
 
       # Must be a valid colour
       col = args[2]
-      if !Utils.is_valid_colour(col)
+      if !Utils.is_uppercase_char(col)
         return "Colours must be capital letters"
       end
 
@@ -123,7 +123,7 @@ class BitmapEditor
 
       # Must be a valid colour
       col = args[3]
-      if !Utils.is_valid_colour(col)
+      if !Utils.is_uppercase_char(col)
         return "Colours must be capital letters"
       end
 

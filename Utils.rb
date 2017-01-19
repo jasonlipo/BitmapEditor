@@ -4,7 +4,7 @@ class Utils
   # @static
   # @param col - The string entered as the colour
   # @return boolean
-  def self.is_valid_colour(col)
+  def self.is_uppercase_char(col)
     return /[[:upper:]]/.match(col)
   end
 

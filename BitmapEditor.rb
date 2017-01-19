@@ -7,8 +7,6 @@ class BitmapEditor
   # Initialise the class as the program hasn't started yet
   @running = false
   @image = nil
-  @width = 0
-  @height = 0
 
   # Start the program running
   # @public
@@ -81,21 +79,18 @@ class BitmapEditor
     # @return string
     def new_image(args)
 
-      # Convert the width and height arguments to integer
-      @width = args[0].to_i
-      @height = args[1].to_i
+      width = args[0].to_i
+      height = args[1].to_i
 
-      if @width < 1 || @height < 1
+      if width < 1 || height < 1
         return "The image must be at minimum 1x1"
       end
 
-      if @width > MAX_SIZE || @height > MAX_SIZE
+      if width > MAX_SIZE || height > MAX_SIZE
         return "The maximum width and height is " + MAX_SIZE.to_s
       end
 
-      # Create a new 2-dimensional array
-      # and clear the image
-      @image = Array.new(@height) { Array.new(@width) }
+      @image = Image.new(width, height)
       return clear_image
 
     end
@@ -105,11 +100,7 @@ class BitmapEditor
     # @return string
     def clear_image
       return image_created if image_created != ""
-      for y in 0..(@height-1)
-        for x in 0..(@width-1)
-          @image[y][x] = BLANK_PIXEL
-        end
-      end
+      @image.fill(BLANK_PIXEL)
       return ""
     end
 
@@ -138,9 +129,9 @@ class BitmapEditor
       end
 
       # x and y must be valid bounds within the image
-      if Utils.is_bounded(x, 0, @width - 1) &&
-         Utils.is_bounded(y, 0, @height - 1)
-        @image[y][x] = col
+      if Utils.is_bounded(x, 0, @image.getWidth - 1) &&
+         Utils.is_bounded(y, 0, @image.getHeight - 1)
+        @image.set(x, y, col)
       else
         return "You entered a pixel which isn't in the image"
       end
@@ -177,34 +168,21 @@ class BitmapEditor
       num2 = args[1].to_i - 1
       num3 = args[2].to_i - 1
 
-      for y in 0..(@height-1)
-        for x in 0..(@width-1)
-
-          if type == "V"
-            if Utils.is_bounded(num1, 0, @width - 1) &&
-               Utils.is_bounded(num2, 0, @height - 1) &&
-               Utils.is_bounded(num3, 0, @height - 1)
-              if x == num1 && y >= num2 && y <= num3
-                @image[y][x] = col
-              end
-            else
-              return "You entered a pixel which isn't in the image"
-            end
-          elsif type == "H"
-            if Utils.is_bounded(num1, 0, @width - 1) &&
-               Utils.is_bounded(num2, 0, @width - 1) &&
-               Utils.is_bounded(num3, 0, @height - 1)
-              if x >= num1 && x <= num2 && y == num3
-                @image[y][x] = col
-              end
-            else
-              return "You entered a pixel which isn't in the image"
-            end
-          end
-
+      if type == "V"
+        if !Utils.is_bounded(num1, 0, @image.getWidth - 1) ||
+           !Utils.is_bounded(num2, 0, @image.getHeight - 1) ||
+           !Utils.is_bounded(num3, 0, @image.getHeight - 1)
+          return "You entered a pixel which isn't in the image"
+        end
+      elsif type == "H"
+        if !Utils.is_bounded(num1, 0, @image.getWidth - 1) ||
+           !Utils.is_bounded(num2, 0, @image.getWidth - 1) ||
+           !Utils.is_bounded(num3, 0, @image.getHeight - 1)
+          return "You entered a pixel which isn't in the image"
         end
       end
 
+      @image.line(type, num1, num2, num3, col)
       return ""
 
     end
@@ -214,14 +192,7 @@ class BitmapEditor
     # @return string
     def show_image
       return image_created if image_created != ""
-      output = ""
-      for y in 0..(@image.length-1)
-        for x in 0..(@image[y].length-1)
-          output += @image[y][x]
-        end
-        output += "\n"
-      end
-      return output.strip
+      return @image.show
     end
 
     # Check that an image has been created

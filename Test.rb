@@ -1,5 +1,6 @@
-require_relative "BitmapEditor"
+require_relative "Image"
 require_relative "Utils"
+require_relative "BitmapEditor"
 require "test/unit"
 
 class TestBitmapEditor < Test::Unit::TestCase

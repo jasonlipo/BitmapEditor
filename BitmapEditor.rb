@@ -95,19 +95,31 @@ class BitmapEditor
 
     end
 
-    def draw_horizontal
+    # Draws a horizontal line
+    # @public
+    # @param args - The array containing the X1/X2, Y1/Y2 and colour
+    # @return string
+    def draw_horizontal(args)
       return draw_line("H", args)
     end
 
+    # Draws a vertical line
+    # @public
+    # @param args - The array containing the X1/X2, Y1/Y2 and colour
+    # @return string
     def draw_vertical(args)
       return draw_line("V", args)
     end
 
+    # When no command or an invalid command has been entered
+    # @public
+    # @return string
     def no_command
       return "Please type a valid command, type ? for help"
     end
 
     # Draws either a horizontal or vertical line across the image
+    # @public
     # @param type - A string either 'H' or 'V'
     # @param args - The array containing the X1/X2, Y1/Y2 and colour
     # @return string

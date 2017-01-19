@@ -31,6 +31,11 @@ class BitmapEditor
     # @return string
     def new_image(args)
 
+      # x and y must be numbers
+      if !Utils.is_numeric([args[0], args[1]])
+        return "X and Y must both be numbers"
+      end
+      
       width = args[0].to_i
       height = args[1].to_i
 
@@ -64,8 +69,7 @@ class BitmapEditor
       return image_created if image_created != ""
 
       # x and y must be numbers
-      if !Utils.is_numeric(args[0]) ||
-         !Utils.is_numeric(args[1])
+      if !Utils.is_numeric([args[0], args[1]])
         return "X and Y must both be numbers"
       end
 
@@ -113,9 +117,7 @@ class BitmapEditor
       return image_created if image_created != ""
 
       # x and y values must be numbers
-      if !Utils.is_numeric(args[0]) ||
-         !Utils.is_numeric(args[1]) ||
-         !Utils.is_numeric(args[2])
+      if !Utils.is_numeric([args[0], args[1], args[2]])
         return "X and Y values must be numbers"
       end
 

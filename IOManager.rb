@@ -28,6 +28,9 @@ class IOManager
 
   end
 
+  # Ends the input/output stream
+  # @public
+  # @return void
   def stop
     @running = false
   end

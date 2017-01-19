@@ -85,8 +85,7 @@ class BitmapEditor
       end
 
       # x and y must be valid bounds within the image
-      if Utils.is_bounded(x, 0, @image.getWidth - 1) &&
-         Utils.is_bounded(y, 0, @image.getHeight - 1)
+      if @image.fits_width(x) && @image.fits_height(y)
         @image.set(x, y, col)
       else
         return "You entered a pixel which isn't in the image"
@@ -135,15 +134,11 @@ class BitmapEditor
       num3 = args[2].to_i - 1
 
       if type == "V"
-        if !Utils.is_bounded(num1, 0, @image.getWidth - 1) ||
-           !Utils.is_bounded(num2, 0, @image.getHeight - 1) ||
-           !Utils.is_bounded(num3, 0, @image.getHeight - 1)
+        if !@image.fits_width(num1) || !@image.fits_height(num2) || !@image.fits_height(num3)
           return "You entered a pixel which isn't in the image"
         end
       elsif type == "H"
-        if !Utils.is_bounded(num1, 0, @image.getWidth - 1) ||
-           !Utils.is_bounded(num2, 0, @image.getWidth - 1) ||
-           !Utils.is_bounded(num3, 0, @image.getHeight - 1)
+        if !@image.fits_width(num1) || !@image.fits_width(num2) || !@image.fits_height(num3)
           return "You entered a pixel which isn't in the image"
         end
       end

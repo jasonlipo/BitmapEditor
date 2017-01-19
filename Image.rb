@@ -43,9 +43,7 @@ class Image
       end
     end
   end
-
-  # Set a given pixel at (x, y) to the letter
-  # @public
+Utilsublic
   # @param x - The x coordinate (zero-index)
   # @param y - The y coordinate (zero-index)
   # @param value - The value to put in the pixel
@@ -91,5 +89,38 @@ class Image
     end
     return output.strip
   end
+
+  # Checks whether the value fits in image width size
+  # @public
+  # @param val - The number to check
+  # @return boolean
+  def fits_width(val)
+    return is_bounded(val, 0, @width - 1)
+  end
+
+  # Checks whether the value fits in image height size
+  # @public
+  # @param val - The number to check
+  # @return boolean
+  def fits_height(val)
+    return is_bounded(val, 0, @height - 1)
+  end
+
+  private
+
+    # Checks whether or not the given index is correctly bounded
+    # within the constraints
+    # @private
+    # @param index - The number to check
+    # @param min - The minimum value this number can be
+    # @param max - The maximum value this number can be
+    # @return boolean
+    def is_bounded(index, min, max)
+      if index < min || index > max
+        return false
+      else
+        return true
+      end
+    end
 
 end

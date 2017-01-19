@@ -1,3 +1,4 @@
+require_relative "Commands"
 require_relative "Image"
 require_relative "Utils"
 require_relative "BitmapEditor"

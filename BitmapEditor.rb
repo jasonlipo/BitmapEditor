@@ -39,36 +39,9 @@ class BitmapEditor
   # @param input - The unformatted raw input string
   # @return string
   def call(input)
-
     first_char = input[0, 1].capitalize
-
-    # Call a utiltity function to break down the white-spaced inputs
-    # into an array of strings
-    args = Utils.analyse_input(input)
-
-    # Check the correct number of arguments
-    check_args = Utils.number_args(first_char, args)
-    return check_args if check_args != ""
-
-    case first_char
-      when '?'
-        return show_help
-      when 'I'
-        return new_image(args)
-      when 'S'
-        return show_image
-      when 'C'
-        return clear_image
-      when 'L'
-        return set_pixel_colour(args)
-      when 'H', 'V'
-        return draw_line(first_char, args)
-      when 'X'
-        return exit_console
-      else
-        return 'Unrecognised command "' + input + '"'
-    end
-
+    cmd = Commands.new(first_char, self)
+    cmd.run(input)
   end
 
   private
@@ -138,6 +111,14 @@ class BitmapEditor
 
       return ""
 
+    end
+
+    def draw_horizontal
+      return draw_line("H", args)
+    end
+
+    def draw_vertical(args)
+      return draw_line("V", args)
     end
 
     # Draws either a horizontal or vertical line across the image

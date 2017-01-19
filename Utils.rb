@@ -1,5 +1,5 @@
 class Utils
-  
+
   # Converts a white-spaced string into an array of arguments
   # with the first element removed
   # @static
@@ -9,7 +9,7 @@ class Utils
 
     # Remove any double whitespaces or leading/trailing spaces
     clean = input.gsub(/\s+/m, ' ').strip
-   
+
     # Break up the string into an array
     parts = clean.split(" ")
 
@@ -44,7 +44,6 @@ class Utils
   # @return boolean
   def self.is_bounded(index, min, max)
     if index < min || index > max
-      puts "You entered a pixel which isn't in the image"
       return false
     else
       return true
@@ -52,7 +51,7 @@ class Utils
   end
 
   def self.number_args(cmd, args)
-    
+
     expected_args = 0
 
     case cmd
@@ -66,12 +65,11 @@ class Utils
 
     # Only worry if expected_args > 0 and it doesn't match
     if expected_args > 0 && args.length != expected_args
-      puts "You should only enter " + expected_args.to_s +
+      return "You should only enter " + expected_args.to_s +
            " value(s) after the '" + cmd + "'"
-      return false
     end
 
-    return true
+    return ""
 
   end
 

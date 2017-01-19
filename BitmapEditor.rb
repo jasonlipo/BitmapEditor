@@ -49,27 +49,26 @@ class BitmapEditor
     args = Utils.analyse_input(input)
 
     # Check the correct number of arguments
-    if Utils.number_args(first_char, args)
+    check_args = Utils.number_args(first_char, args)
+    return check_args if check_args != ""
 
-      case first_char
-        when '?'
-          return show_help
-        when 'I'
-          return new_image(args)
-        when 'S'
-          return show_image
-        when 'C'
-          return clear_image
-        when 'L'
-          return set_pixel_colour(args)
-        when 'H', 'V'
-          return draw_line(first_char, args)
-        when 'X'
-          return exit_console
-        else
-          return 'Unrecognised command "' + input + '"'
-      end
-
+    case first_char
+      when '?'
+        return show_help
+      when 'I'
+        return new_image(args)
+      when 'S'
+        return show_image
+      when 'C'
+        return clear_image
+      when 'L'
+        return set_pixel_colour(args)
+      when 'H', 'V'
+        return draw_line(first_char, args)
+      when 'X'
+        return exit_console
+      else
+        return 'Unrecognised command "' + input + '"'
     end
 
   end
@@ -142,6 +141,8 @@ class BitmapEditor
       if Utils.is_bounded(x, 0, @width - 1) &&
          Utils.is_bounded(y, 0, @height - 1)
         @image[y][x] = col
+      else
+        return "You entered a pixel which isn't in the image"
       end
 
       return ""
@@ -183,7 +184,7 @@ class BitmapEditor
                 @image[y][x] = col
               end
             else
-              return
+              return "You entered a pixel which isn't in the image"
             end
           elsif type == "H"
             if Utils.is_bounded(num1, 0, @width - 1) &&
@@ -193,7 +194,7 @@ class BitmapEditor
                 @image[y][x] = col
               end
             else
-              return
+              return "You entered a pixel which isn't in the image"
             end
           end
 

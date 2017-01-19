@@ -43,7 +43,9 @@ class Image
       end
     end
   end
-Utilsublic
+
+  # Set a given pixel at (x, y) to the letter
+  # @public
   # @param x - The x coordinate (zero-index)
   # @param y - The y coordinate (zero-index)
   # @param value - The value to put in the pixel

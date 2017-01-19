@@ -10,7 +10,7 @@ class Utils
 
   # Returns whether or not the given string is a numeric
   # @static
-  # @param val - An array of values entered as the number
+  # @param vals - An array of values entered as the number
   # @return boolean
   def self.is_numeric(vals)
     for i in 0..(vals.length-1)

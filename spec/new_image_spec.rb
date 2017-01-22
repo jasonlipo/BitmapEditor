@@ -70,6 +70,23 @@ describe BitmapEditor do
 
     end
 
+    context "trying an image larger than 250 in width or height" do
+      it "should throw an error to the screen" do
+        message = @bitmap.process("I 300 35")
+        expect(message).to eq "The maximum width and height is 250"
+        message2 = @bitmap.process("I 25 700")
+        expect(message2).to eq "The maximum width and height is 250"
+        message3 = @bitmap.process("I 251 251")
+        expect(message3).to eq "The maximum width and height is 250"
+      end
+
+      it "should not allow you to print the image" do
+        @bitmap.process("I 251 9")
+        output = @bitmap.process("S")
+        expect(output).to eq "You haven't created an image yet"
+      end
+    end
+
   end
 
 end

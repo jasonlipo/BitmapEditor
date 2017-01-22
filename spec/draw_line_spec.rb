@@ -67,6 +67,17 @@ describe BitmapEditor do
       end
     end
 
+    context "multiple overlapping lines" do
+      it "should replace pixels each time drawing a line" do
+        @bitmap.process("I 8 7")
+        @bitmap.process("V 7 3 5 D")
+        @bitmap.process("H 1 5 2 M")
+        @bitmap.process("H 1 8 5 P")
+        final = @bitmap.process("S")
+        expect(final).to eq "OOOOOOOO\nMMMMMOOO\nOOOOOODO\nOOOOOODO\nPPPPPPPP\nOOOOOOOO\nOOOOOOOO"
+      end
+    end
+
   end
 
 end

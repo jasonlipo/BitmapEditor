@@ -16,6 +16,12 @@ class Commands
 
   @@cmd_data.default = ["no_command", 0]
 
+  # Initialise a command
+  # Get the method call from the class specified
+  # @public
+  # @param command - The function/method name
+  # @param cls - The class holding the method
+  # @return void
   def initialize(command, cls)
     @command = command
     com_info = @@cmd_data[@command]
@@ -23,7 +29,11 @@ class Commands
     @num_args = com_info[1]
     @method_call = cls.method(func_name)
   end
-
+  
+  # Run the method from the class using the list of arguments
+  # @public
+  # @param args - The list of string arguments
+  # @return void
   def run(args)
     list_args = inputs(args)
     if @num_args > 0 && list_args.length != @num_args

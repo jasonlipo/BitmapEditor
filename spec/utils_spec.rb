@@ -27,6 +27,12 @@ describe Utils do
     end
 
     context "try uppercase letter" do
+      it "should return true" do
+        expect(Utils.is_uppercase_char("A")).to be_truthy
+        expect(Utils.is_uppercase_char("Z")).to be_truthy
+        expect(Utils.is_uppercase_char("N")).to be_truthy
+        expect(Utils.is_uppercase_char("Q")).to be_truthy
+      end
     end
 
     context "try special character" do

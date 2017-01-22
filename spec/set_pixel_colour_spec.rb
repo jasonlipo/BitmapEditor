@@ -27,6 +27,19 @@ describe BitmapEditor do
     end
 
     context "when not typing capital letters for colours" do
+      it "should not let you colour the image" do
+        @bitmap.process("I 4 5")
+        message = @bitmap.process("L 1 2 3")
+        expect(message).to eq "Colours must be capital letters"
+      end
+      
+      it "should show the image unaffected" do
+        @bitmap.process("I 4 5")
+        original = @bitmap.process("S")
+        @bitmap.process("L 1 2 3")
+        after = @bitmap.process("S")
+        expect(after).to eq original
+      end
     end
 
     context "when trying to colour a pixel not in the image" do

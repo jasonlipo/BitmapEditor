@@ -19,11 +19,13 @@ describe Image do
   describe "#line" do
     it "should draw either a horizontal or vertical line" do
       im = Image.new(3, 6)
+      im.fill("O")
       im.line("H", 1, 3, 4, "N")
       expect(im.show).to eq "OOO\nOOO\nOOO\nNNN\nOOO\nOOO"
-      im = Image.new(7, 2)
-      im.line("V", 4, 1, 2, "J")
-      expect(im.show).to eq "OOOJOOO\nOOOJOOO"
+      im2 = Image.new(7, 2)
+      im2.fill("O")
+      im2.line("V", 4, 1, 2, "J")
+      expect(im2.show).to eq "OOOJOOO\nOOOJOOO"
     end
   end
 

@@ -20,6 +20,10 @@ describe BitmapEditor do
     end
 
     context "when entering wrong number of inputs" do
+      it "should tell you how many inputs to enter after the 'L'" do
+        output = @bitmap.process("L 123")
+        expect(output).to eq "You should only enter 3 value(s) after the 'L'"
+      end
     end
 
     context "when not typing capital letters for colours" do

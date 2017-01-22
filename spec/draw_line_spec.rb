@@ -52,6 +52,11 @@ describe BitmapEditor do
     end
 
     context "not using capital letters for colours" do
+      it "should show an error message" do
+        @bitmap.process("I 9 11")
+        output = @bitmap.process("H 1 2 7 3")
+        expect(output).to eq "Colours must be capital letters"
+      end
     end
 
     context "entering wrong number of inputs" do

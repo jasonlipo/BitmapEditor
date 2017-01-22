@@ -37,6 +37,25 @@ describe BitmapEditor do
 
     end
 
+    context "trying an image smaller than 1x1 dimensions" do
+      
+      it "should throw an error to the screen" do
+        message = @bitmap.process("I 0 9")
+        expect(message).to eq "The image must be at minimum 1x1"
+        message2 = @bitmap.process("I 50 0")
+        expect(message2).to eq "The image must be at minimum 1x1"
+        message3 = @bitmap.process("I 4 -7")
+        expect(message3).to eq "The image must be at minimum 1x1"
+      end
+
+      it "should not allow you to print the image" do
+        @bitmap.process("I 0 9")
+        output = @bitmap.process("S")
+        expect(output).to eq "You haven't created an image yet"
+      end
+
+    end
+
   end
 
 end

@@ -32,6 +32,11 @@ describe Commands do
     end
 
     context "single argument" do
+      it "should be an empty list" do
+        expect(@c.inputs("H")).to eq []
+        expect(@c.inputs("4526")).to eq []
+        expect(@c.inputs("mOKUSF")).to eq []
+      end
     end
 
   end

@@ -13,6 +13,10 @@ describe BitmapEditor do
   describe "#set_pixel_colour" do
     
     context "before an image is created" do
+      it "should display an error message" do
+        output = @bitmap.process("L 1 2 3")
+        expect(output) to eq "You haven't created an image yet"
+      end
     end
 
     context "when entering wrong number of inputs" do

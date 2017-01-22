@@ -22,6 +22,10 @@ describe BitmapEditor do
     end
 
     context "wrong number of inputs" do
+      it "should tell you how many inputs to enter" do
+        output = @bitmap.process("l82")
+        expect(output).to eq "You should only enter 3 value(s) after the 'L'"
+      end
     end
 
     context "unknown inputs" do

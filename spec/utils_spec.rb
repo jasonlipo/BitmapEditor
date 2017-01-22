@@ -58,15 +58,28 @@ describe Utils do
   describe "#is_numeric" do
     
     context "empty list" do
+      it "should return false" do
+        expect(Utils.is_numeric([])).to be false
+      end
     end
 
     context "list of numeric strings" do
+      it "should return true" do
+        expect(Utils.is_numeric(["4", "6", "2", "8", "999"])).to be true
+      end
     end
 
     context "list of numbers" do
+      it "should return true" do
+        expect(Utils.is_numeric([4, 6, 2, 8, 999])).to be true
+        expect(Utils.is_numeric([41, 6.5, 23, 811])).to be true
+      end
     end
 
     context "mixture of numbers and words" do
+      it "should return false" do
+        expect(Utils.is_numeric(["9k", "l9k", "ma", "77"])).to be false
+      end
     end
 
   end

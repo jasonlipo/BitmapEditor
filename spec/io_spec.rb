@@ -36,6 +36,13 @@ describe BitmapEditor do
     end
 
     context "valid inputs followed by additional characters" do
+      it "should ignore the additional characters" do
+        response = @bitmap.process("s23")
+        expect(response).to eq "You haven't created an image yet"
+        x2 = BitmapEditor.new(IOManager.new)
+        exit = x2.process("x89 1akj")
+        expect(exit).to eq "Thanks for running the program!"
+      end
     end
 
   end

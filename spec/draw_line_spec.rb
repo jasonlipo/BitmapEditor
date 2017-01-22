@@ -22,6 +22,17 @@ describe BitmapEditor do
     end
 
     context "drawing a valid horizontal line" do
+      it "should print the same image with horizontal list of colour" do
+        @bitmap.process("I 8 7")
+        @bitmap.process("H 2 7 3 B")
+        output = @bitmap.process("S")
+        expect(output).to eq "OOOOOOOO\nOOOOOOOO\nOBBBBBBO\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO"
+      end
+      it "should not display any error messages" do
+        @bitmap.process("I 8 7")
+        output = @bitmap.process("H 2 7 3 B")
+        expect(output).to be_empty
+      end
     end
 
     context "drawing a valid vertical line" do

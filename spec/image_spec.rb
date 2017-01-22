@@ -28,9 +28,27 @@ describe Image do
   end
 
   describe "#fits_width" do
+    it "should return true if the value is within the width" do
+      @im = Image.new(4, 8)
+      expect(@im.fits_width(0)).to be true
+      expect(@im.fits_width(1)).to be true
+      expect(@im.fits_width(2)).to be true
+      expect(@im.fits_width(4)).to be true
+      expect(@im.fits_width(5)).to be false
+      expect(@im.fits_width(8)).to be false
+    end
   end
 
   describe "#fits_height" do
+    it "should return true if the value is within the height" do
+      @im = Image.new(4, 8)
+      expect(@im.fits_height(0)).to be true
+      expect(@im.fits_height(4)).to be true
+      expect(@im.fits_height(5)).to be true
+      expect(@im.fits_height(8)).to be true
+      expect(@im.fits_height(9)).to be false
+      expect(@im.fits_height(10)).to be false
+    end
   end
 
 end

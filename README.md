@@ -19,7 +19,7 @@ $ ruby Main.rb
 To run the specification tests using RSpec:
 ```
 $ cd /path/to/bitmap_editor
-$ rspec spec spec/bitmap_editor_spec.rb
+$ rspec spec spec/new_image_spec.rb
 ```
 
 To see the results of the unit tests:

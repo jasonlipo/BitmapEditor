@@ -6,11 +6,16 @@ require_relative "../BitmapEditor"
 
 describe Image do
 
-  before(:each) do
-    @im = Image.new(10, 10)
-  end
-
   describe "#fill" do
+    context "when entering a letter" do
+      it "should replace every pixel with this new letter" do
+        @im = Image.new(5, 5)
+        @im.fill("A")
+        expect(@im.show).to eq "AAAAA\nAAAAA\nAAAAA\nAAAAA\nAAAAA"
+        @im.fill("S")
+        expect(@im.show).to eq "SSSSS\nSSSSS\nSSSSS\nSSSSS\nSSSSS"
+      end
+    end
   end
 
   describe "#line" do

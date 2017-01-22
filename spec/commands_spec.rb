@@ -8,7 +8,11 @@ describe Commands do
 
   describe "#inputs" do
     
-    context "empty list" do
+    context "empty input" do
+      it "should be an empty list" do
+        c = Commands.new("", BitmapEditor.new(nil))
+        expect(c.inputs("")).to eq []
+      end
     end
 
     context "multiple arguments" do

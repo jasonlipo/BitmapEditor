@@ -20,6 +20,19 @@ describe BitmapEditor do
     end
 
     context "when clearing a blank image" do
+      it "should not return any output" do
+        @bitmap.process("I 7 4")
+        output = @bitmap.process("C")
+        expect(output).to be_empty
+      end
+
+      it "should show the same result as before being cleared" do
+        @bitmap.process("I 4 9")
+        original = @bitmap.process("S")
+        @bitmap.process("C")
+        after = @bitmap.process("S")
+        expect(after).to eq original
+      end
     end
 
     context "when clearing a valid image" do

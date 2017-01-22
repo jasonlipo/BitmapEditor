@@ -28,6 +28,7 @@ describe BitmapEditor do
         output = @bitmap.process("S")
         expect(output).to eq "OOOOOOOO\nOOOOOOOO\nOBBBBBBO\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO\nOOOOOOOO"
       end
+      
       it "should not display any error messages" do
         @bitmap.process("I 8 7")
         output = @bitmap.process("H 2 7 3 B")
@@ -36,6 +37,18 @@ describe BitmapEditor do
     end
 
     context "drawing a valid vertical line" do
+      it "should print the same image with horizontal list of colour" do
+        @bitmap.process("I 8 7")
+        @bitmap.process("V 7 3 5 D")
+        output = @bitmap.process("S")
+        expect(output).to eq "OOOOOOOO\nOOOOOOOO\nOOOOOODO\nOOOOOODO\nOOOOOODO\nOOOOOOOO\nOOOOOOOO"
+      end
+      
+      it "should not display any error messages" do
+        @bitmap.process("I 9 11")
+        output = @bitmap.process("V 1 5 2 M")
+        expect(output).to be_empty
+      end
     end
 
     context "not using capital letters for colours" do

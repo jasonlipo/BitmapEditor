@@ -43,6 +43,13 @@ describe BitmapEditor do
     end
 
     context "when trying to colour a pixel not in the image" do
+      it "should show an error message" do
+        @bitmap.process("I 4 5")
+        error = @bitmap.process("L 0 4 X")
+        expect(error).to eq "You entered a pixel which isn't in the image"
+        error2 = @bitmap.process("L 7 2 Z")
+        expect(error2).to eq "You entered a pixel which isn't in the image"
+      end
     end
 
     context "setting the colour of a valid pixel" do

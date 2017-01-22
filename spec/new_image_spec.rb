@@ -20,7 +20,6 @@ describe BitmapEditor do
     end
 
     context "when sending in valid input" do
-      
       before(:each) do
         @output = @bitmap.process("I 5 6")
       end
@@ -34,11 +33,9 @@ describe BitmapEditor do
         expect(im.getWidth).to eq 5
         expect(im.getHeight).to eq 6
       end
-
     end
 
     context "trying an image smaller than 1x1 dimensions" do
-      
       it "should throw an error to the screen" do
         message = @bitmap.process("I 0 9")
         expect(message).to eq "The image must be at minimum 1x1"
@@ -53,11 +50,9 @@ describe BitmapEditor do
         output = @bitmap.process("S")
         expect(output).to eq "You haven't created an image yet"
       end
-
     end
 
     context "when enterting malformed input" do
-      
       it "should enforce only numbers" do
         output = @bitmap.process("I B 9")
         expect(output).to eq "X and Y must both be numbers"
@@ -67,7 +62,6 @@ describe BitmapEditor do
         output = @bitmap.process("I 8 7 2")
         expect(output).to eq "You should only enter 2 value(s) after the 'I'"
       end
-
     end
 
     context "trying an image larger than 250 in width or height" do

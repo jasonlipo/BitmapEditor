@@ -13,6 +13,10 @@ describe BitmapEditor do
   describe "#clear_image" do
     
     context "before an image is created" do
+      it "should display an error message" do
+        output = @bitmap.process("C")
+        expect(output).to eq "You haven't created an image yet"
+      end
     end
 
     context "when clearing a blank image" do

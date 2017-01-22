@@ -55,7 +55,7 @@ describe BitmapEditor do
         @bitmap.process("C")
         @bitmap.process("C")
         output = @bitmap.process("S")
-        expect(output2).to eq "OOOO\nOOOO\nOOOO\nOOOO"
+        expect(output).to eq "OOOO\nOOOO\nOOOO\nOOOO"
       end
     end
 

@@ -53,6 +53,21 @@ describe BitmapEditor do
     end
 
     context "setting the colour of a valid pixel" do
+      it "should modify only one pixel" do
+        @bitmap.process("I 4 5")
+        @bitmap.process("L 4 3 F")
+        first = @bitmap.process("S")
+        expect(first).to eq "OOOO\nKOOO\nOOOF\nOOOO\nOOOO"
+        @bitmap.process("L 1 2 J")
+        second = @bitmap.process("S")
+        expect(second).to eq "OOOO\nJOOO\nOOOF\nOOOO\nOOOO"
+      end
+      
+      it "should not display an errors" do
+        @bitmap.process("I 8 2")
+        output = @bitmap.process("L 4 5")
+        expect(output).to be_empty
+      end
     end
 
   end

@@ -56,6 +56,20 @@ describe BitmapEditor do
 
     end
 
+    context "when enterting malformed input" do
+      
+      it "should enforce only numbers" do
+        output = @bitmap.process("I B 9")
+        expect(output).to eq "X and Y must both be numbers"
+      end
+
+      it "should tell the user how many numbers to put after the 'I'" do
+        output = @bitmap.process("I 8 7 2")
+        expect(output).to eq "You should only enter 2 value(s) after the 'I'"
+      end
+
+    end
+
   end
 
 end

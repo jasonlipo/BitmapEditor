@@ -15,7 +15,7 @@ describe BitmapEditor do
     context "before an image is created" do
       it "should display an error message" do
         output = @bitmap.process("L 1 2 3")
-        expect(output) to eq "You haven't created an image yet"
+        expect(output).to eq "You haven't created an image yet"
       end
     end
 

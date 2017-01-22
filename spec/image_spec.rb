@@ -20,11 +20,11 @@ describe Image do
     it "should draw either a horizontal or vertical line" do
       im = Image.new(3, 6)
       im.fill("O")
-      im.line("H", 1, 3, 4, "N")
+      im.line("H", 0, 3, 3, "N")
       expect(im.show).to eq "OOO\nOOO\nOOO\nNNN\nOOO\nOOO"
       im2 = Image.new(7, 2)
       im2.fill("O")
-      im2.line("V", 4, 1, 2, "J")
+      im2.line("V", 3, 0, 1, "J")
       expect(im2.show).to eq "OOOJOOO\nOOOJOOO"
     end
   end

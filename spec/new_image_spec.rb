@@ -29,9 +29,14 @@ describe BitmapEditor do
       end
       
       it "should have the correct image dimensions" do
-        im = @bitmap.get_image
-        expect(im.getWidth).to eq 5
-        expect(im.getHeight).to eq 6
+        (1..20).each do |width|
+          (1..20).each do |height|
+            @bitmap.process("I " + width.to_s + " " + height.to_s)
+            im = @bitmap.get_image
+            expect(im.getWidth).to eq width
+            expect(im.getHeight).to eq height
+          end
+        end
       end
     end
 

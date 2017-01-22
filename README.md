@@ -1,6 +1,12 @@
 # Bitmap Editor
 
-Pixel co-ordinates are a pair of integers: a column number between 1 and 250, and a row number between 1 and 250. Bitmaps starts at coordinates 1,1. Colours are specified by capital letters.
+This program simulates a basic editor of bitmap images using capital letters to represent pixels.
+
+Pixel co-ordinates are a pair of integers: a column number between 1 and 250, and a row number between 1 and 250.
+
+Bitmaps starts at coordinates 1,1.
+
+Colours are specified by capital letters.
 
 # How to Run
 
@@ -10,7 +16,13 @@ $ cd /path/to/bitmap_editor
 $ ruby Main.rb
 ```
 
-To see the results of the test-suite
+To run the specification tests using RSpec:
+```
+$ cd /path/to/bitmap_editor
+$ rspec spec spec/bitmap_editor_spec.rb
+```
+
+To see the results of the unit tests:
 ```
 $ cd /path/to/bitmap_editor
 $ ruby Test.rb

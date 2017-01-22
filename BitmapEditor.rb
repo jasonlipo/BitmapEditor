@@ -23,6 +23,13 @@ class BitmapEditor
     cmd.run(input)
   end
 
+  # A getter method to return the Image object
+  # @public
+  # @return Image
+  def get_image
+    return @image
+  end
+
   private
 
     # Create a new bitmap in the class

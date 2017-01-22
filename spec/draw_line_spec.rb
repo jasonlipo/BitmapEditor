@@ -60,6 +60,11 @@ describe BitmapEditor do
     end
 
     context "entering wrong number of inputs" do
+      it "should tell you how many inputs to enter" do
+        @bitmap.process("I 9 11")
+        error = @bitmap.process("H 1 1 1 1 D")
+        expect(error).to eq "You should only enter 4 value(s) after the 'H'"
+      end
     end
 
   end

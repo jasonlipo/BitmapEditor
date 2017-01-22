@@ -29,6 +29,10 @@ describe BitmapEditor do
     end
 
     context "unknown inputs" do
+      it "should react as if empty input" do
+        output = @bitmap.process("9kdj")
+        expect(output).to eq "Please type a valid command, type ? for help"
+      end
     end
 
     context "valid inputs followed by additional characters" do

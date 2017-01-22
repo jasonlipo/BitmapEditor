@@ -49,6 +49,14 @@ describe BitmapEditor do
     end
 
     context "when clearing twice in a row" do
+      it "should have no effect" do
+        @bitmap.process("I 4 4")
+        @bitmap.process("L 2 2 U")
+        @bitmap.process("C")
+        @bitmap.process("C")
+        output = @bitmap.process("S")
+        expect(output2).to eq "OOOO\nOOOO\nOOOO\nOOOO"
+      end
     end
 
   end

@@ -5,7 +5,7 @@ class Utils
   # @param col - The string entered as the colour
   # @return boolean
   def self.is_uppercase_char(col)
-    return /[[:upper:]]/.match(col)
+    return /^[[:upper:]]$/.match(col)
   end
 
   # Returns whether or not the given string is a numeric

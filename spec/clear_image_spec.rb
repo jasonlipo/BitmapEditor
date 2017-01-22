@@ -36,6 +36,16 @@ describe BitmapEditor do
     end
 
     context "when clearing a valid image" do
+      it "should reset all the letters back to O" do
+        @bitmap.process("I 4 4")
+        @bitmap.process("C")
+        output1 = @bitmap.process("S")
+        expect(output1).to eq "OOOO\nOOOO\nOOOO\nOOOO"
+        @bitmap.process("L 2 2 U")
+        @bitmap.process("C")
+        output2 = @bitmap.process("S")
+        expect(output2).to eq "OOOO\nOOOO\nOOOO\nOOOO"
+      end
     end
 
     context "when clearing twice in a row" do

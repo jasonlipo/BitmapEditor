@@ -13,6 +13,12 @@ describe BitmapEditor do
   describe "#draw_line" do
     
     context "before an image has been created" do
+      it "should show an error message" do
+        output1 = @bitmap.process("H 3 4 9 J")
+        expect(output1).to eq "You haven't created an image yet"
+        output2 = @bitmap.process("V 8 5 2 A")
+        expect(output2).to eq "You haven't created an image yet"
+      end
     end
 
     context "drawing a valid horizontal line" do

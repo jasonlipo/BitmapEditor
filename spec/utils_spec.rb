@@ -9,6 +9,12 @@ describe Utils do
   describe "#is_uppercase_char" do
     
     context "try number" do
+      it "should return false" do
+        expect(Utils.is_uppercase_char("8HJ")).to be_falsey
+        expect(Utils.is_uppercase_char("100")).to be_falsey
+        expect(Utils.is_uppercase_char("65")).to be_falsey
+        expect(Utils.is_uppercase_char("3.87")).to be_falsey
+      end
     end
 
     context "try lowercase letter" do
